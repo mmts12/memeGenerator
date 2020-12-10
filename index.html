@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+  </head>
+  <body onload="init()">
+    <header>
+      <div class="logo">
+        <img class="logo-img" src="./img/LOGO.png" alt="" />
+      </div>
+      <div class="header-links">
+        <button class="gallery-btn" onclick="onGallery()">Gallery</button>
+        <button class="memes-btn" onclick="renderSaveMems()">
+          Saved Memes
+        </button>
+      </div>
+    </header>
+    <main>
+      <div class="grid-container"></div>
+      <div class="editor-container">
+        <div class="canvas">
+          <canvas id="myCanvas" width="499" height="499"></canvas>
+        </div>
+        <div class="editor"></div>
+      </div>
+    </main>
+
+    <script src="./js/storage-service.js"></script>
+    <script src="./js/meme-service.js"></script>
+    <script src="./js/controller-saved-memes.js"></script>
+    <script src="./js/meme-controller.js"></script>
+  </body>
+</html>
