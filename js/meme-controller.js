@@ -72,6 +72,8 @@ function renderEditTools(id) {
   <button class="add" onclick="onAdd('${id}')">+</button>
   <button class="moveLines" onclick="onLine('${id}')">Switch Line</button>
   <label>${(gLine === 0) ? 'up' : 'down'}</label>
+  <button onclick="onMoveLine(${id},-10)">&#8593</button>
+  <button onclick="onMoveLine(${id},10)">&#8595</button>
   </div>
   <div class="textEditor">
     <button class="fontPlus" onclick="onChangeFont(${id},'plus')">Font +</button>
@@ -90,6 +92,17 @@ function renderEditTools(id) {
 </div>`
     editor.innerHTML = strHtmls
 }
+
+function onMoveLine(id, diff) {
+    var meme = getMeme();
+    drawImageAgain(id)
+    meme.lines[gLine].position.y += diff
+    updateMeme(meme);
+    drawText()
+    console.log('move line meme');
+    console.log(gMeme);
+}
+
 
 function changeColor(id) {
     var elInp = document.querySelector('input[name=color]')
@@ -118,15 +131,9 @@ function onLine(id) {
 //     if (gMeme.lines[0].isDraw && gMeme.lines[1].isDraw) return 'up-down'
 //     if (gMeme.lines[0].isDraw && !gMeme.lines[1].isDraw) return 'up'
 //     if (!gMeme.lines[0].isDraw && gMeme.lines[1].isDraw) return 'down'
+//     return 'no text exist';
 // }
 
-
-// function addFocus(position) {
-//     console.log(position)
-//     var meme = getMeme();
-//     gCtx.strokeStyle = "white";
-//     gCtx.strokeRect(position.x - 10, position.y - 50, gCtx.measureText(meme.lines[gLine].txt).width + 20, 70);
-// }
 
 
 function onAdd(id) {
@@ -138,10 +145,10 @@ function onAdd(id) {
         return;
     }
     isDraw(gLine);
-    var position = chekLine()
-    var text = elInp.value;
+    var position = meme.lines[gLine].position
     gCtx.font = `${meme.lines[gLine].size}px ${meme.lines[gLine].font}`;
     gCtx.fillStyle = changeColor(id);
+    var text = elInp.value;
     gCtx.fillText(text, position.x, position.y);
     elInp.value = '';
     updateText(id, text)
@@ -149,15 +156,12 @@ function onAdd(id) {
 
 }
 
+
 function onClear(id) {
-    var meme = getMeme();
     var img = new Image();
     img.src = `./img/${id}.jpg`;
     gCtx.drawImage(img, 0, 0);
-    meme.lines[0].txt = '';
-    meme.lines[0].size = 40;
-    meme.lines[1].txt = '';
-    meme.lines[1].size = 40;
+    resetProperties();
     renderEditTools(id);
 
 
@@ -173,35 +177,36 @@ function onChangeFont(id, fontSize) {
     if (fontSize === 'plus') changeFont(id, 1);
     drawImageAgain(id);
     drawText();
+    console.log('font meme')
+    console.log(gMeme)
     renderEditTools(id);
 }
 
 
 
 function drawText() {
-    var position = chekLine()
     var meme = getMeme();
     gCtx.font = `${meme.lines[gLine].size}px ${meme.lines[gLine].font}`;
     gCtx.fillStyle = meme.lines[gLine].color;
-    gCtx.fillText(meme.lines[gLine].txt, position.x, position.y);
+    gCtx.fillText(meme.lines[gLine].txt, meme.lines[gLine].position.x, meme.lines[gLine].position.y);
     if (gLine === 0) {
         gCtx.font = `${meme.lines[1].size}px ${meme.lines[1].font}`;
         gCtx.fillStyle = meme.lines[1].color;
-        gCtx.fillText(meme.lines[1].txt, 50, 470);
+        gCtx.fillText(meme.lines[1].txt, meme.lines[1].position.x, meme.lines[1].position.y);
     }
-
     else {
         gCtx.font = `${meme.lines[0].size}px ${meme.lines[0].font}`;
         gCtx.fillStyle = meme.lines[0].color;
-        gCtx.fillText(meme.lines[0].txt, 50, 70);
+        gCtx.fillText(meme.lines[0].txt, meme.lines[0].position.x, meme.lines[0].position.y);
     }
-
 }
 
-function chekLine() {
-    if (gLine === 0) return { x: 50, y: 70 }
-    return { x: 50, y: 470 }
-}
+// function chekLine() {
+//     if (gLine === 0) return { x: 50, y: 70 }
+//     return { x: 50, y: 470 }
+// }
+
+
 
 
 

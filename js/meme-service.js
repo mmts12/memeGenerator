@@ -1,93 +1,14 @@
 'use strict';
-// const KEY = 'memes'
-const IMG_MEME = 'meme'
 
 var gKeywords =
 {
     'happy': 12, 'funny puk': 1
 }
-var gImgs = [
-    {
-        id: 1, url: './img/1.jpg', keywords: ['funny']
-    },
-    {
-        id: 2, url: './img/2.jpg', keywords: ['funny']
-    },
-    {
-        id: 3, url: './img/3.jpg', keywords: ['baby']
-    },
-    {
-        id: 4, url: './img/4.jpg', keywords: ['funny']
-    },
-    {
-        id: 5, url: './img/5.jpg', keywords: ['baby']
-    },
-    {
-        id: 6, url: './img/6.jpg', keywords: ['funny']
-    },
-    {
-        id: 7, url: './img/7.jpg', keywords: ['baby']
-    },
-    {
-        id: 8, url: './img/8.jpg', keywords: ['movie']
-    },
-    {
-        id: 9, url: './img/9.jpg', keywords: ['baby']
-    },
-    {
-        id: 10, url: './img/10.jpg', keywords: ['funny']
-    },
-    {
-        id: 11, url: './img/11.jpg', keywords: ['movie']
-    },
-    {
-        id: 12, url: './img/12.jpg', keywords: ['funny']
-    },
-    {
-        id: 13, url: './img/13.jpg', keywords: ['movie']
-    },
-    {
-        id: 14, url: './img/14.jpg', keywords: ['movie']
-    },
-    {
-        id: 15, url: './img/15.jpg', keywords: ['movie']
-    },
-    {
-        id: 16, url: './img/16.jpg', keywords: ['movie']
-    },
-    {
-        id: 17, url: './img/17.jpg', keywords: ['funny']
-    },
-    {
-        id: 18, url: './img/18.jpg', keywords: ['movie']
-    }
-];
 
 
-
-var gMeme = {
-    selectedImgId: 5,
-    // selectedLineIdx: 0,
-    lines: [
-        {
-            isDraw: false,
-            txt: '',
-            size: 40,
-            align: 'center',
-            color: 'red',
-            font: 'impact'
-        },
-        {
-            isDraw: false,
-            txt: '',
-            size: 40,
-            align: 'center',
-            color: 'red',
-            font: 'impact'
-        }
-    ]
+function updateMeme(meme) {
+    gMeme = meme;
 }
-
 
 function getMeme() {
     return gMeme;
@@ -161,9 +82,101 @@ function downloadImg(elLink) {
     elLink.href = imgContent
 }
 
+function resetProperties() {
+    var meme = getMeme();
+    meme.lines[0].position.x = 50
+    meme.lines[0].position.y = 70
+    meme.lines[1].position.x = 50
+    meme.lines[1].position.y = 470
+    meme.lines[0].txt = '';
+    meme.lines[0].size = 40;
+    meme.lines[0].isDraw = false;
+    meme.lines[1].txt = '';
+    meme.lines[1].size = 40;
+    meme.lines[1].isDraw = false;
+}
 
+var gMeme = {
+    selectedImgId: 5,
+    // selectedLineIdx: 0,
+    lines: [
+        {
+            isDraw: false,
+            txt: '',
+            size: 40,
+            align: 'center',
+            color: 'red',
+            font: 'impact',
+            position: { x: 50, y: 70 }
+        },
+        {
+            isDraw: false,
+            txt: '',
+            size: 40,
+            align: 'center',
+            color: 'red',
+            font: 'impact',
+            position: { x: 50, y: 470 }
+        }
+    ]
+}
 
-
+var gImgs = [
+    {
+        id: 1, url: './img/1.jpg', keywords: ['funny']
+    },
+    {
+        id: 2, url: './img/2.jpg', keywords: ['funny']
+    },
+    {
+        id: 3, url: './img/3.jpg', keywords: ['baby']
+    },
+    {
+        id: 4, url: './img/4.jpg', keywords: ['funny']
+    },
+    {
+        id: 5, url: './img/5.jpg', keywords: ['baby']
+    },
+    {
+        id: 6, url: './img/6.jpg', keywords: ['funny']
+    },
+    {
+        id: 7, url: './img/7.jpg', keywords: ['baby']
+    },
+    {
+        id: 8, url: './img/8.jpg', keywords: ['movie']
+    },
+    {
+        id: 9, url: './img/9.jpg', keywords: ['baby']
+    },
+    {
+        id: 10, url: './img/10.jpg', keywords: ['funny']
+    },
+    {
+        id: 11, url: './img/11.jpg', keywords: ['movie']
+    },
+    {
+        id: 12, url: './img/12.jpg', keywords: ['funny']
+    },
+    {
+        id: 13, url: './img/13.jpg', keywords: ['movie']
+    },
+    {
+        id: 14, url: './img/14.jpg', keywords: ['movie']
+    },
+    {
+        id: 15, url: './img/15.jpg', keywords: ['movie']
+    },
+    {
+        id: 16, url: './img/16.jpg', keywords: ['movie']
+    },
+    {
+        id: 17, url: './img/17.jpg', keywords: ['funny']
+    },
+    {
+        id: 18, url: './img/18.jpg', keywords: ['movie']
+    }
+];
 
 
 
