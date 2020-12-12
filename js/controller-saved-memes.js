@@ -13,10 +13,10 @@ function renderSaveMems() {
     var strHtml = '';
     var elGrid = document.querySelector('.grid-container')
     var elEditor = document.querySelector('.editor-container')
-    elGrid.style.display = 'block'
+    elGrid.style.display = 'flex'
     elEditor.style.display = 'none'
     for (i = 0; i < memesNumber; i++) {
-        strHtml += `<canvas id="myCanvas${i + 1}" width="500" height="500"></canvas>`;
+        strHtml += `<canvas class="saved-canvas" id="myCanvas${i + 1}" width="500" height="500"></canvas>`;
         elGrid.innerHTML = strHtml;
     }
     for (i = 0; i < memesNumber; i++) {
