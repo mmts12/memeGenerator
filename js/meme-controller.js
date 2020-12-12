@@ -9,7 +9,9 @@ var gLine = 0;
 
 
 function init() {
+
     renderMemes()
+    renderKeywords()
     gCanvas = document.getElementById("myCanvas");
     gCtx = gCanvas.getContext("2d");
 }
@@ -36,13 +38,17 @@ function renderMemes() {
 }
 
 function getImgs() {
-    return getImages();
+    var keyWords = getKeywords()
+    console.log(getImages())
+    return getImages(keyWords.key);
 }
 
 function onGallery() {
     document.querySelector('main').classList.add('bgc')
     var elGrid = document.querySelector('.grid-container')
     var elEditor = document.querySelector('.editor-container')
+    var elKeyWords = document.querySelector('.keywords')
+    elKeyWords.style.display = 'flex'
     elGrid.style.display = 'grid';
     elEditor.style.display = 'flex';
     var meme = getMeme();
@@ -57,6 +63,8 @@ function renderEditor(id) {
     document.querySelector('main').classList.remove('bgc')
     document.querySelector('.canvas').style.display = 'block'
     var elGrid = document.querySelector('.grid-container');
+    var elKeyWords = document.querySelector('.keywords')
+    elKeyWords.style.display = 'none'
     elGrid.style.display = "none";
     var img = new Image();
     img.src = `./img/${id}.jpg`;
@@ -227,8 +235,23 @@ function drawText() {
     }
 }
 
+function renderKeywords() {
+    var keyWords = document.querySelector('.keywords');
+    var strHtmls = `<div onclick="onKeyWord(this,'funny')" class="funny-key">funny</div>
+    <div onclick="onKeyWord(this,'movie')" class="movie-key">movie</div>
+    <div onclick="onKeyWord(this,'baby')" class="baby-key">baby</div>`
+    keyWords.innerHTML = strHtmls;
+}
 
-
+function onKeyWord(word, key) {
+    changeKeyWord(key);
+    var keyWords = getKeywords();
+    var size = keyWords[key];
+    keyWords[key] += 0.3
+    word.style.fontSize = size + 'rem';
+    updateKeyWords(keyWords);
+    renderMemes()
+}
 
 
 

@@ -13,6 +13,8 @@ function renderSaveMems() {
     var strHtml = '';
     var elGrid = document.querySelector('.grid-container')
     var elEditor = document.querySelector('.editor-container')
+    var elKeyWords = document.querySelector('.keywords')
+    elKeyWords.style.display = 'none'
     elGrid.style.display = 'flex'
     elEditor.style.display = 'none'
     for (i = 0; i < memesNumber; i++) {

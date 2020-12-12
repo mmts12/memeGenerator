@@ -307,3 +307,21 @@ input[type='color']:hover {
     padding: 10px;
   }
 }
+
+.keywords {
+  display: flex;
+  font-size: 2rem;
+  color: white;
+  justify-content: center;
+}
+.movie-key {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.movie-key,
+.baby-key,
+.funny-key {
+  cursor: pointer;
+  font-family: cursive;
+}

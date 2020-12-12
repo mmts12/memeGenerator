@@ -2,9 +2,18 @@
 
 var gKeywords =
 {
-    'happy': 12, 'funny puk': 1
+    key: 'all',
+    movie: 2.3,
+    funny: 2.3,
+    baby: 2.3
 }
 
+function getKeywords() {
+    return gKeywords;
+}
+function updateKeyWords(keyWords) {
+    gKeywords = keyWords
+}
 
 function updateMeme(meme) {
     gMeme = meme;
@@ -14,15 +23,7 @@ function getMeme() {
     return gMeme;
 }
 
-function getImages() {
-    return gImgs;
-}
-// function isDrawMeme() {
-//     if (gMeme.lines[0].isDraw && gMeme.lines[1].isDraw) return 'up-down'
-//     if (gMeme.lines[0].isDraw) return 'up';
-//     if (gMeme.lines[1].isDraw) return 'down';
 
-// }
 
 function isDraw(gLine) {
     gMeme.lines[gLine].isDraw = true
@@ -96,10 +97,12 @@ function resetProperties() {
     meme.lines[1].isDraw = false;
 }
 
+
+
 var gMeme = {
     selectedImgId: 5,
     edit: false,
-    // selectedLineIdx: 0,
+    keyWordsSize: { movie: 2.1, funny: 2.1, baby: 2.1 },
     lines: [
         {
             isDraw: false,
@@ -148,7 +151,7 @@ var gImgs = [
         id: 8, url: './img/8.jpg', keywords: ['movie']
     },
     {
-        id: 9, url: './img/9.jpg', keywords: ['baby']
+        id: 9, url: './img/9.jpg', keywords: ['baby', 'funny']
     },
     {
         id: 10, url: './img/10.jpg', keywords: ['funny']
@@ -178,6 +181,26 @@ var gImgs = [
         id: 18, url: './img/18.jpg', keywords: ['movie']
     }
 ];
+
+
+
+function filterImgMeme(key) {
+    var memes = gImgs.filter(function (img) {
+        return img.keywords.includes(key)
+    })
+    return memes;
+}
+
+function getImages(key) {
+    if (gKeywords.key === 'all') return gImgs
+    else return filterImgMeme(key);
+}
+
+function changeKeyWord(key) {
+    gKeywords.key = key;
+}
+
+
 
 
 
