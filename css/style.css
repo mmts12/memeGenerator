@@ -100,11 +100,19 @@ canvas {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: gray;
+  /* background-color: gray; */
   width: 509px;
   height: 509px;
   border: gray 5px solid;
   border-radius: 10px;
+  background-image: linear-gradient(
+    to left,
+    #c9a626,
+    #c8b619,
+    #c2c709,
+    #b8d902,
+    #a8eb12
+  );
 }
 .actions {
   display: flex;
@@ -224,17 +232,17 @@ input[type='color'] {
   border-radius: 8px;
 }
 
-input[type='color']:hover {
+/* input[type='color']:hover {
   opacity: 0.7;
-}
+} */
 .btn-download,
 .save-btn {
-  background-color: #72449d;
+  background-color: white;
   border-radius: 8px;
   font-size: 1rem;
 }
 .btn-download a {
-  color: white;
+  color: black;
 }
 
 .btn-download,
@@ -244,10 +252,10 @@ input[type='color']:hover {
 }
 
 .share-btn {
-  background-color: #1871b0;
+  background-color: white;
   border-radius: 8px;
   font-size: 1rem;
-  color: white;
+  color: black;
 }
 .share-btn img {
   height: 20px;
@@ -256,7 +264,7 @@ input[type='color']:hover {
   height: 20px;
 }
 .save-btn {
-  color: white;
+  color: black;
 }
 
 @media only screen and (max-width: 1126px) {
@@ -308,7 +316,8 @@ input[type='color']:hover {
 
 .movie-key,
 .baby-key,
-.funny-key {
+.funny-key,
+.all-key {
   cursor: pointer;
   font-family: cursive;
 }
@@ -328,25 +337,22 @@ input[type='color']:hover {
   padding: 10px;
   font-size: 30px;
 }
-
-.modal {
-  text-align: center;
-  display: none;
-  width: 200px;
-  height: 200px;
+.input-color {
   position: absolute;
-  right: 0px;
-  top: 300px;
-  margin: 0 auto;
-  color: black;
-  font-size: 2rem;
-  background-image: linear-gradient(
-    to left,
-    #c0a280,
-    #dcb3a9,
-    #e9cbd0,
-    #f0e5ee,
-    #ffffff
-  );
+  opacity: 0;
+}
+
+.input-color-icon {
+  display: flex;
+  justify-content: center;
+}
+.color-btn {
+  padding: 20px;
   border-radius: 10px;
+}
+.input-color-icon:hover {
+  opacity: 0.7;
+}
+.fa-palette {
+  font-size: 30px;
 }

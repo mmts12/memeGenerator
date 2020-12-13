@@ -92,12 +92,15 @@ function renderEditTools(id) {
   <button class="delete-btn" onclick="onClear('${id}')"><i class="fas fa-trash"></i></button>
   </div>
   <div class="lines-text-editor">
-  
   <button class="line-down" onclick="onMoveLine(${id},-10)"><i class="fas fa-long-arrow-alt-up"></i></button>
   <button class="line-up" onclick="onMoveLine(${id},10)"><i class="fas fa-long-arrow-alt-down"></i></button>
   <button class="fontPlus" onclick="onChangeFont(${id},'plus')"><img src="./icons/font+.png"></button>
   <button class="fontMinus" onclick="onChangeFont(${id},'minus')"><img src="./icons/font-.png"></button>
-  <input  type="color" name="color" onchange="changeColor('${id}')"/>
+  <div class="input-color-icon"> 
+  <input class="input-color"  type="color" name="color" onchange="changeColor('${id}')"/>
+  <button class="color-btn"><i class="fas fa-palette"></i></button>
+  
+  </div>
   </div>
   <div class="actions">
   <button class="btn-download">
@@ -209,7 +212,6 @@ function onChangeFont(id, fontSize) {
     if (fontSize === 'plus') changeFont(id, 1);
     drawImageAgain(id);
     drawText();
-    renderEditTools(id);
 }
 
 
@@ -239,7 +241,8 @@ function renderKeywords() {
     var keyWords = document.querySelector('.keywords');
     var strHtmls = `<div onclick="onKeyWord(this,'funny')" class="funny-key">funny</div>
     <div onclick="onKeyWord(this,'movie')" class="movie-key">movie</div>
-    <div onclick="onKeyWord(this,'baby')" class="baby-key">baby</div>`
+    <div onclick="onKeyWord(this,'baby')" class="baby-key">baby</div>
+    <div onclick="onKeyWord(this,'all')" class="all-key">\u00A0 All</div>`
     keyWords.innerHTML = strHtmls;
 }
 
