@@ -61,8 +61,6 @@ body {
 main {
   margin-left: 10px;
   margin-right: 10px;
-
-  /* font-family: poppins; */
 }
 .bgc {
   background-color: #383b42;
@@ -287,6 +285,9 @@ input[type='color'] {
   }
   .editor-container {
     margin-top: 0px;
+  }
+  main {
+    margin-left: 0px;
   }
 }
 

@@ -4,7 +4,7 @@
 var gCanvas;
 var gCtx;
 var gLine = 0;
-
+var gIsPaint = false
 
 
 
@@ -14,6 +14,40 @@ function init() {
     renderKeywords()
     gCanvas = document.getElementById("myCanvas");
     gCtx = gCanvas.getContext("2d");
+    gCanvas.addEventListener('mousedown', startDraw)
+    gCanvas.addEventListener('mousemove', draw)
+    gCanvas.addEventListener('mouseup', stopDraw)
+}
+
+function startDraw() {
+    gIsPaint = true;
+}
+
+function stopDraw() {
+    gIsPaint = false;
+}
+
+function draw(ev) {
+    if (!gIsPaint) return;
+    var meme = getMeme();
+    const offsetX = ev.offsetX
+    const offsetY = ev.offsetY
+    const posY = meme.lines[gLine].position.y
+    const posX = meme.lines[gLine].position.x
+    var txt = meme.lines[gLine].txt
+    var txtLen = gCtx.measureText(txt).width
+    var fontSize = meme.lines[gLine].size;
+    console.log('x', offsetX, 'y', offsetY)
+    console.log(posX, posY)
+    console.log(txtLen)
+    if (offsetX > posX - 10 && offsetX < posX + txtLen && offsetY > posY - 20 && offsetY < posY + fontSize - 20) {
+        console.log('hiiii')
+        meme.lines[gLine].position.x = offsetX - 10
+        meme.lines[gLine].position.y = offsetY - 10
+    }
+    drawImageAgain(meme.selectedImgId);
+    updateMeme(meme);
+    drawText()
 }
 
 function renderMemes() {
@@ -66,9 +100,12 @@ function renderEditor(id) {
     var elKeyWords = document.querySelector('.keywords')
     elKeyWords.style.display = 'none'
     elGrid.style.display = "none";
+    var meme = getMeme();
+    meme.selectedImgId = id;
     var img = new Image();
     img.src = `./img/${id}.jpg`;
     gCtx.drawImage(img, 0, 0);
+    updateMeme(meme);
     renderEditTools(id)
 
 }
@@ -217,7 +254,7 @@ function onChangeFont(id, fontSize) {
 
 
 function drawText() {
-    console.log('draw')
+    // console.log('draw')
     var meme = getMeme();
     var memeCurrLine = meme.lines[gLine];
     gCtx.font = `${memeCurrLine.size}px ${memeCurrLine.font}`;
