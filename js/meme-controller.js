@@ -75,35 +75,29 @@ function renderEditor(id) {
 
 
 function renderEditTools(id) {
-    var meme = getMeme();
     var editor = document.querySelector('.editor')
     editor.style.display = 'flex';
     var strHtmls = `<input
     class="input-meme"
     type="text"
+    oninput="onDrawInput(this,'${id}')"
     placeholder="Write your meme here"
     name="canvasText"
   />
   <div class="controls-conatainer">
-  <label class="label-lines">${(gLine === 0) ? 'Line-Top' : 'Line-Bottom'}</label>
-  <div class="font-size"><label >F-size:${meme.lines[gLine].size}px</label></div>
+  
   <div class="controls">
-  <button class="delete-btn" onclick="onClear('${id}')"><img src="./icons/delete.png"></button>
-  <button class="add-btn" onclick="onAdd('${id}')"><img src="./icons/add.png"></button>
-  <button class="edit-btn" onclick="editText('${id}')"><img src="./icons/edit.png"></button>
+  <button class="edit-btn" onclick="editText('${id}')"><i class="far fa-edit"></i></button>
+  <button class="add-btn" onclick="onAdd('${id}')"><i class="fas fa-plus"></i></button>
+  <button class="delete-btn" onclick="onClear('${id}')"><i class="fas fa-trash"></i></button>
   </div>
   <div class="lines-text-editor">
-  <div class="lines">
-  <button class="moveLines" onclick="onLine('${id}')"><img src="./icons/lines.png"></button>
-  <button class="line-down" onclick="onMoveLine(${id},-10)"><img src="./icons/arrow-up.png"></button>
-  <button class="line-up" onclick="onMoveLine(${id},10)"><img src="./icons/arrow-down.png"></button>
-  </div>
-  <div class="textEditor">
-    <button class="fontPlus" onclick="onChangeFont(${id},'plus')"><img src="./icons/font+.png"></button>
-    <button class="fontMinus" onclick="onChangeFont(${id},'minus')"><img src="./icons/font-.png"></button>
-    
-    <input type="color" name="color" onchange="changeColor('${id}')"/>
-  </div>
+  
+  <button class="line-down" onclick="onMoveLine(${id},-10)"><i class="fas fa-long-arrow-alt-up"></i></button>
+  <button class="line-up" onclick="onMoveLine(${id},10)"><i class="fas fa-long-arrow-alt-down"></i></button>
+  <button class="fontPlus" onclick="onChangeFont(${id},'plus')"><img src="./icons/font+.png"></button>
+  <button class="fontMinus" onclick="onChangeFont(${id},'minus')"><img src="./icons/font-.png"></button>
+  <input  type="color" name="color" onchange="changeColor('${id}')"/>
   </div>
   <div class="actions">
   <button class="btn-download">
@@ -117,14 +111,27 @@ function renderEditTools(id) {
 <button class="save-btn" onclick="onSave()"><img src="./icons/save.png" />Save Meme</button>
 </div></div>`
     editor.innerHTML = strHtmls
+    renderColor()
+}
+
+
+
+function onDrawInput(elInp, id) {
+    var meme = getMeme();
+    let txt = elInp.value
+    console.log(txt);
+    meme.lines[gLine].txt = txt
+    updateMeme(meme);
+    drawImageAgain(id);
+    drawText();
 }
 
 function onMoveLine(id, diff) {
     var meme = getMeme();
-    drawImageAgain(id)
+    drawImageAgain(id);
     meme.lines[gLine].position.y += diff
     updateMeme(meme);
-    drawText()
+    drawText();
 }
 
 
@@ -133,28 +140,25 @@ function changeColor(id) {
     updateColor(id, elInp.value);
     drawImageAgain(id)
     drawText();
-    return elInp.value;
 }
 
 function editText(id) {
+    onLine(id)
     var elInp = document.querySelector('input[name=canvasText]');
-    _switchLine()
     var meme = getMeme();
     var txt = meme.lines[gLine].txt;
     elInp.value = txt;
 }
-function _switchLine() {
-    if (gLine === 0) {
-        gLine = 1;
-        return;
-    }
-    else {
-        gLine = 0
-        return;
-    }
+
+function renderColor() {
+    var meme = getMeme();
+    var elInp = document.querySelector('input[name=color]');
+    elInp.value = meme.lines[gLine].color;
 }
 
+
 function onLine(id) {
+    console.log(gLine);
     if (gLine === 0) {
         gLine = 1;
         renderEditTools(id)
@@ -165,28 +169,23 @@ function onLine(id) {
         renderEditTools(id)
         return;
     }
+
 }
 
 function onAdd(id) {
+
     var elInp = document.querySelector('input[name=canvasText]')
     var meme = getMeme();
     if (!elInp.value) return;
-    if (meme.lines[gLine].txt) {
-        meme.lines[gLine].txt = elInp.value;
-        drawImageAgain(id);
-        updateText(id, elInp.value);
-        drawText();
-        elInp.value = '';
-        return;
-    }
     isDraw(gLine);
     var position = meme.lines[gLine].position
     gCtx.font = `${meme.lines[gLine].size}px ${meme.lines[gLine].font}`;
-    gCtx.fillStyle = changeColor(id);
+    gCtx.fillStyle = meme.lines[gLine].color;
     var text = elInp.value;
     gCtx.fillText(text, position.x, position.y);
     elInp.value = '';
     updateText(id, text)
+    onLine(id)
 }
 
 
@@ -216,6 +215,7 @@ function onChangeFont(id, fontSize) {
 
 
 function drawText() {
+    console.log('draw')
     var meme = getMeme();
     var memeCurrLine = meme.lines[gLine];
     gCtx.font = `${memeCurrLine.size}px ${memeCurrLine.font}`;

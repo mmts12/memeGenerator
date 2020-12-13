@@ -98,6 +98,8 @@ canvas {
 .editor {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   background-color: gray;
   width: 509px;
   height: 509px;
@@ -114,16 +116,11 @@ canvas {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 100px;
 }
-.textEditor {
-  justify-content: space-between;
-}
+
 .constrols {
   justify-content: space-between;
-}
-.controls img {
-  height: 54px;
-  width: 59px;
 }
 
 .link-download {
@@ -131,6 +128,9 @@ canvas {
 }
 input[type='color'] {
   cursor: pointer;
+  height: 82px;
+  width: 75px;
+  border-radius: 8px;
 }
 
 .logo-img {
@@ -141,6 +141,7 @@ input[type='color'] {
   margin-right: 50px;
 }
 .input-meme {
+  width: 80%;
   margin-top: 20px;
   height: 58px;
   border-width: 2px;
@@ -161,14 +162,17 @@ input[type='color'] {
 }
 .delete-btn {
   background-color: red;
+  color: white;
 }
 .edit-btn {
   background-color: #0e97ce;
+  color: white;
 }
 .add-btn {
   background-color: lightgreen;
   margin-right: 18px;
   margin-left: 18px;
+  color: white;
 }
 
 .delete-btn,
@@ -179,6 +183,7 @@ input[type='color'] {
 }
 .lines-text-editor {
   padding: 11px;
+  display: flex;
 }
 .moveLines {
   background-color: #4aa9d0;
@@ -197,17 +202,10 @@ input[type='color'] {
   color: #4aa9d0;
   font-family: cursive;
 }
-.line-up img {
-  height: 54px;
-  width: 59px;
-}
-.line-down img {
-  height: 54px;
-  width: 59px;
-}
+
 .line-up,
 .line-down {
-  background-color: lightcoral;
+  background-color: white;
   padding: 10px;
   border-radius: 8px;
 }
@@ -221,25 +219,11 @@ input[type='color'] {
 }
 .fontPlus,
 .fontMinus {
-  background-color: #5748f4;
+  background-color: white;
   padding: 10px;
   border-radius: 8px;
 }
-.font-size {
-  font-size: 1.6rem;
-  display: inline;
-  border-bottom: #5748f4 solid 1px;
-  margin-bottom: 5px;
-}
-.font-size label {
-  color: #5748f4;
-  font-family: cursive;
-}
-input[type='color'] {
-  height: 63px;
-  width: 75px;
-  border-radius: 8px;
-}
+
 input[type='color']:hover {
   opacity: 0.7;
 }
@@ -293,6 +277,9 @@ input[type='color']:hover {
   .logo-img {
     width: 80px;
   }
+  .editor-container {
+    margin-top: 0px;
+  }
 }
 
 @media only screen and (max-width: 630px) {
@@ -324,4 +311,42 @@ input[type='color']:hover {
 .funny-key {
   cursor: pointer;
   font-family: cursive;
+}
+
+.fa-trash,
+.fa-plus,
+.fa-edit {
+  font-size: 30px;
+  padding: 10px;
+  color: white;
+}
+.fa-long-arrow-alt-down {
+  padding: 10px;
+  font-size: 30px;
+}
+.fa-long-arrow-alt-up {
+  padding: 10px;
+  font-size: 30px;
+}
+
+.modal {
+  text-align: center;
+  display: none;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  right: 0px;
+  top: 300px;
+  margin: 0 auto;
+  color: black;
+  font-size: 2rem;
+  background-image: linear-gradient(
+    to left,
+    #c0a280,
+    #dcb3a9,
+    #e9cbd0,
+    #f0e5ee,
+    #ffffff
+  );
+  border-radius: 10px;
 }

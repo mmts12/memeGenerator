@@ -109,7 +109,7 @@ var gMeme = {
             txt: '',
             size: 40,
             align: 'center',
-            color: 'red',
+            color: 'black',
             font: 'impact',
             position: { x: 50, y: 70 }
         },
@@ -118,7 +118,7 @@ var gMeme = {
             txt: '',
             size: 40,
             align: 'center',
-            color: 'red',
+            color: 'black',
             font: 'impact',
             position: { x: 50, y: 470 }
         }
