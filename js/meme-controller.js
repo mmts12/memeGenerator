@@ -146,9 +146,9 @@ function renderEditTools(id) {
   </a></button>
   <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
   <input name="img" id="imgData" type="hidden" />
-  <button class="button share-btn" type="submit"><img src="./icons/share.png" />Share</button>
+  <button class="button share-btn" type="submit"><img src="./icons/share.png" />\u00A0Share</button>
 </form>
-<button class="save-btn" onclick="onSave()"><img src="./icons/save.png" />Save Meme</button>
+<button class="save-btn" onclick="onSave()"><img src="./icons/save.png" />\u00A0Save Meme</button>
 </div></div>`
     editor.innerHTML = strHtmls
     renderColor()

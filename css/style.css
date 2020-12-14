@@ -216,12 +216,12 @@ input[type='color'] {
   border-radius: 8px;
 }
 .fontPlus img {
-  height: 54px;
-  width: 59px;
+  height: 47px;
+  width: 46px;
 }
 .fontMinus img {
-  height: 54px;
-  width: 59px;
+  height: 47px;
+  width: 46px;
 }
 .fontPlus,
 .fontMinus {
@@ -256,10 +256,10 @@ input[type='color'] {
   color: black;
 }
 .share-btn img {
-  height: 20px;
+  height: 15px;
 }
 .save-btn img {
-  height: 20px;
+  height: 15px;
 }
 .save-btn {
   color: black;
@@ -288,6 +288,9 @@ input[type='color'] {
   }
   main {
     margin-left: 0px;
+  }
+  .bgc {
+    background-color: #22252c;
   }
 }
 
@@ -348,7 +351,7 @@ input[type='color'] {
   justify-content: center;
 }
 .color-btn {
-  padding: 20px;
+  padding: 16px;
   border-radius: 10px;
 }
 .input-color-icon:hover {
